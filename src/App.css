@@ -14,7 +14,6 @@
 }
 
 .App-header {
-  min-height: 100vh;
   color: white;
 }
 
@@ -23,8 +22,14 @@
 }
 
 .gridContainer {
-  width: auto;
-  /*max-width: 200*/
+    width: 180px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+.pieceController {
+  clear: both;
+  padding: 25px 0 0 0;
 }
 
 @keyframes App-logo-spin {

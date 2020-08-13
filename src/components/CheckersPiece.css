@@ -6,9 +6,16 @@
 	left: 50%;
 	margin-top: -6px;
 	margin-left: -6px;
-	border-radius: 50%;
 	border: solid thin #FFFFFF;
 } 
+
+.checkerPiece.squarePiece {
+	border-radius: 0;
+}
+
+.checkerPiece.roundPiece {
+	border-radius: 50%;
+}
 
 .redPiece {
 	background-color: red;

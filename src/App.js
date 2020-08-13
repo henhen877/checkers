@@ -18,6 +18,9 @@ class App extends Component {
 
     this.gridSizeInput = React.createRef();
     this.changeSize = this.changeSize.bind(this);
+    this.handleSwapColor = this.handleSwapColor.bind(this)
+    this.handleChangeShape = this.handleChangeShape.bind(this)
+    this.handleRadioChange = this.handleRadioChange.bind(this)
   }
 
   componentDidMount() {  
@@ -61,13 +64,23 @@ class App extends Component {
   }
 
   handleSwapColor(e) {
-    e.preventDefault();
+    // e.preventDefault();
+    this.setState({
+      swapColor: !this.state.swapColor
+    })
 
   }
 
   handleChangeShape(e) {
-    e.preventDefault();
+    // e.preventDefault();
+    this.setState({
+      changeShape: !this.state.changeShape
+    })
 
+  }
+
+  handleRadioChange(e) {
+    return;
   }
 
   render() {
@@ -95,6 +108,8 @@ class App extends Component {
                       key={`tile${i}`}
                       index={index}
                       gridSize={this.state.gridSize}
+                      swapColor={this.state.swapColor}
+                      changeShape={this.state.changeShape}
                       className={e}
                     />
                   )
@@ -110,7 +125,9 @@ class App extends Component {
             id="swapColor"
             name="swapColor"
             value={this.state.swapColor}
-            onClick={this.handleSwapColor} 
+            checked={this.state.swapColor}
+            onClick={this.handleSwapColor}
+            onChange={this.handleRadioChange} 
           />
           <label for="swapColor">Swap Colors</label><br/>
           <input 
@@ -118,7 +135,9 @@ class App extends Component {
             id="changeSquare"
             name="gender"
             value={this.state.changeShape}
+            checked={this.state.changeShape}
             onClick={this.handleChangeShape}
+            onChange={this.handleRadioChange}
            />
           <label for="changeSquare">Change to Square Shape</label><br/>
         </div>
