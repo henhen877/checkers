@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import { Tile } from './components/Tile';
+import Tile from './components/Tile';
 import './App.css';
 
 
@@ -36,7 +36,7 @@ class App extends Component {
     const tileSize = 20; //Size and width defined in Tile.css stylesheet. Can make dynamic also but short on time
 
     for (var x = 0; x < this.state.gridSize; x++) {
-      for (var y = 0; y < this.state.gridSize; y++) {
+      for (var y = 0; y < this.state.gridSize + 1; y++) {
         if (y % 2 === 0) {
           column.push(reverseColor === true ? blackClass : whiteClass); 
         } else {
@@ -100,12 +100,13 @@ class App extends Component {
           </button>
         </div>
         <header className="App-header">
-          <div className="gridContainer" style={{ width: this.state.gridContainerSize }}>
+          <div className="gridContainer">
             {
               this.state.grid.length > 0 && this.state.grid.map((el, index) => (
                 el.map((e, i) => (
                     <Tile
                       key={`tile${i}`}
+                      ind={i}
                       index={index}
                       gridSize={this.state.gridSize}
                       swapColor={this.state.swapColor}
