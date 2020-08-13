@@ -14,3 +14,7 @@
 .black {
 	background-color: #000000;
 }
+
+.focused {
+	border: solid thin yellow !important;
+}
