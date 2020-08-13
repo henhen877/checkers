@@ -11,7 +11,9 @@ class App extends Component {
     this.state = {
       gridSize: 8, //default value is 8x8 grid;
       grid: [],
-      gridContainerSize: '180px'
+      gridContainerSize: '180px',
+      swapColor: false,
+      changeShape: false
     }
 
     this.gridSizeInput = React.createRef();
@@ -58,13 +60,23 @@ class App extends Component {
     }, () => this.initGrid())
   }
 
+  handleSwapColor(e) {
+    e.preventDefault();
+
+  }
+
+  handleChangeShape(e) {
+    e.preventDefault();
+
+  }
+
   render() {
     const tileSize = 20; //tile width / height
     const gridSize = this.state.grid * 25;
     return (
       <div className="App">
         <div className="changeSizeForm">
-          <label htmlFor="sizeInput">Change Grid Size</label>
+          <label for="sizeInput">Change Grid Size</label>
           <br/>
           <input name="sizeInput" type="text" ref={this.gridSizeInput}/>
           <button
@@ -80,7 +92,9 @@ class App extends Component {
               this.state.grid.length > 0 && this.state.grid.map((el, index) => (
                 el.map((e, i) => (
                     <Tile
-                      key={`tile${i}`} 
+                      key={`tile${i}`}
+                      index={index}
+                      gridSize={this.state.gridSize}
                       className={e}
                     />
                   )
@@ -89,6 +103,25 @@ class App extends Component {
             }
           </div>
         </header>
+        <div className="pieceController">
+          <p>Customize Chess Pieces:</p>
+          <input 
+            type="radio" 
+            id="swapColor"
+            name="swapColor"
+            value={this.state.swapColor}
+            onClick={this.handleSwapColor} 
+          />
+          <label for="swapColor">Swap Colors</label><br/>
+          <input 
+            type="radio"
+            id="changeSquare"
+            name="gender"
+            value={this.state.changeShape}
+            onClick={this.handleChangeShape}
+           />
+          <label for="changeSquare">Change to Square Shape</label><br/>
+        </div>
       </div>
      )
   }

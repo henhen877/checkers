@@ -4,6 +4,7 @@
 	/*display: inline-block;*/
 	float: left;
 	border: solid thin black;
+	position: relative;
 }
 
 .black {
