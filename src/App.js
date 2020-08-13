@@ -12,30 +12,47 @@ class App extends Component {
       gridSize: 8, //default value is 8x8 grid;
       grid: []
     }
+
+    this.gridSizeInput = React.createRef();
+    this.changeSize = this.changeSize.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount() {  
+    this.initGrid();
+  }
+
+  initGrid() {
     var arr = [];
     var column = [];
+    var reverseColor = false;
     const blackClass = 'black';
     const whiteClass = 'white';
 
     for (var x = 0; x < this.state.gridSize; x++) {
       for (var y = 0; y < this.state.gridSize; y++) {
         if (y % 2 === 0) {
-          column.push(blackClass); 
+          column.push(reverseColor === true ? blackClass : whiteClass); 
         } else {
-          column.push(whiteClass);
+          column.push(reverseColor === false ? blackClass : whiteClass);
         }
       }
+      reverseColor = !reverseColor;
       arr.push(column);
       column = [];
     }
 
-    // console.log('ARRR', arr);
     this.setState({
       grid: arr
-    }, () => console.log('state', this.state.grid))
+    })
+  }
+
+  changeSize(e) {
+    e.preventDefault();
+    console.log('ons isze', this.gridSizeInput.current.value)
+
+    this.setState({
+      gridSize: Number(this.gridSizeInput.current.value)
+    }, () => this.initGrid())
   }
 
   render() {
@@ -43,6 +60,16 @@ class App extends Component {
     const gridSize = this.state.grid * 25;
     return (
       <div className="App">
+        <div className="changeSizeForm">
+          <label htmlFor="sizeInput">Change Grid Size</label>
+          <input name="sizeInput" type="text" ref={this.gridSizeInput}/>
+          <button
+            type="button"
+            onClick={this.changeSize}
+          >
+            Change Size
+          </button>
+        </div>
         <header className="App-header">
           <div className="gridContainer" style={{width: '180px'}}>
             {
