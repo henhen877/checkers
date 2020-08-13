@@ -11,7 +11,6 @@ class App extends Component {
     this.state = {
       gridSize: 8, //default value is 8x8 grid;
       grid: [],
-      gridContainerSize: '180px',
       swapColor: false,
       changeShape: false
     }
@@ -49,8 +48,7 @@ class App extends Component {
     }
 
     this.setState({
-      grid: arr,
-      gridContainerSize: ((this.state.gridSize * 20) + 20) + 'px'
+      grid: arr
     })
   }
 
@@ -84,8 +82,6 @@ class App extends Component {
   }
 
   render() {
-    const tileSize = 20; //tile width / height
-    const gridSize = this.state.grid * 25;
     return (
       <div className="App">
         <div className="changeSizeForm">
