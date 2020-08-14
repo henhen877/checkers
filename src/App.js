@@ -32,7 +32,6 @@ class App extends Component {
     var reverseColor = false;
     const blackClass = 'black';
     const whiteClass = 'white';
-    const tileSize = 20; //Size and width defined in Tile.css stylesheet. Can make dynamic also but short on time
 
     for (var x = 0; x < this.state.gridSize; x++) {
       for (var y = 0; y < this.state.gridSize + 1; y++) {
@@ -54,7 +53,6 @@ class App extends Component {
 
   changeSize(e) {
     e.preventDefault();
-    console.log('ons isze', this.gridSizeInput.current.value)
 
     this.setState({
       gridSize: Number(this.gridSizeInput.current.value)
@@ -62,19 +60,15 @@ class App extends Component {
   }
 
   handleSwapColor(e) {
-    // e.preventDefault();
     this.setState({
       swapColor: !this.state.swapColor
     })
-
   }
 
   handleChangeShape(e) {
-    // e.preventDefault();
     this.setState({
       changeShape: !this.state.changeShape
     })
-
   }
 
   handleRadioChange(e) {
@@ -99,18 +93,21 @@ class App extends Component {
           <div className="gridContainer">
             {
               this.state.grid.length > 0 && this.state.grid.map((el, index) => (
-                el.map((e, i) => (
-                    <Tile
-                      key={`tile${i}`}
-                      ind={i}
-                      index={index}
-                      gridSize={this.state.gridSize}
-                      swapColor={this.state.swapColor}
-                      changeShape={this.state.changeShape}
-                      className={e}
-                    />
-                  )
-                )
+                <div key={`gridRow${index}`} className="gridRow">
+                  {
+                    el.map((e, i) => (
+                        <Tile
+                          key={`tile${i}`}
+                          index={index}
+                          gridSize={this.state.gridSize}
+                          swapColor={this.state.swapColor}
+                          changeShape={this.state.changeShape}
+                          className={e}
+                        />
+                      )
+                    )
+                  }
+                </div>
               ))
             }
           </div>

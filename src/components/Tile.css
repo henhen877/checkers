@@ -2,19 +2,11 @@
 	width: 20px;
 	height: 20px;
 	display: inline-block;
-	/*float: left;*/
-	border: solid thin black;
+	outline: none;
+	border: solid thin #000000;
 	position: relative;
-}
-
-.clearSide {
-	clear: both;
 }
 
 .black {
 	background-color: #000000;
-}
-
-.focused {
-	border: solid thin yellow !important;
 }

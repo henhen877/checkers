@@ -24,3 +24,12 @@
 .blackPiece {
 	background-color: black;
 }
+
+.focused {
+	border: solid 3px #FAED27 !important;
+}
+
+.checkerPiece.focused {
+	margin-top: -9px !important;
+	margin-left: -9px !important;
+}
